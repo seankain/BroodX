@@ -10,16 +10,19 @@ public class Cicada : MonoBehaviour
     private float LimpLifetimeSeconds = 10;
     private float LimpElapsed = 0;
     private bool Limped = false;
-    private float Speed = 0.5f;
+    [SerializeField]
+    private float Speed = 4f;
     [SerializeField]
     private float EmitProbability = 0.1f;
     private Vector3 Destination = Vector3.zero;
     private Rigidbody rb;
+    private CicadaSpawner spawner;
 
     // Start is called before the first frame update
     void Start()
     {
         rb = GetComponent<Rigidbody>();
+        spawner = FindObjectOfType<CicadaSpawner>();
         SetDestination();
     }
 
@@ -29,7 +32,7 @@ public class Cicada : MonoBehaviour
         if (Limped)
         {
             LimpElapsed += Time.deltaTime;
-            if(LimpElapsed >= LimpLifetimeSeconds) { gameObject.SetActive(false); LimpElapsed = 0; }
+            if(LimpElapsed >= LimpLifetimeSeconds) { gameObject.SetActive(false); LimpElapsed = 0;  }
             return;
         }
         this.transform.LookAt(Destination);
@@ -44,12 +47,19 @@ public class Cicada : MonoBehaviour
         if (Vector3.Distance(this.transform.position, Destination) < 0.5) { GoLimp(); }
     }
 
+    public void Respawn() {
+        rb.isKinematic = true;
+        rb.useGravity = false;
+        Limped = false;
+    }
+
     private void SetDestination() 
     {
         //var cicadaSpawners = FindObjectsOfType<CicadaSpawner>();
-        var landings = GameObject.FindGameObjectsWithTag("CicadaLanding");
-        var idx = (int)(Random.value * landings.Length);
-        Destination = landings[idx].transform.position + new Vector3(Random.value,Random.value,Random.value);
+        //var landings = GameObject.FindGameObjectsWithTag("CicadaLanding");
+        //var idx = (int)(Random.value * landings.Length);
+        Destination = spawner.RandomLandLocation();
+        //Destination = landings[idx].transform.position + new Vector3(Random.value,Random.value,Random.value);
     }
 
     /// <summary>

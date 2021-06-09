@@ -7,6 +7,8 @@ TagManager:
   - Collide
   - CicadaLanding
   - CicadaSpawn
+  - Ground
+  - Tree
   layers:
   - Default
   - TransparentFX

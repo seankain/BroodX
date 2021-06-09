@@ -50,7 +50,7 @@ AudioSource:
   Priority: 128
   DopplerLevel: 1
   MinDistance: 0.1
-  MaxDistance: 1
+  MaxDistance: 5
   Pan2D: 0
   rolloffMode: 0
   BypassEffects: 0
@@ -139,6 +139,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   CallSound: {fileID: 3007457833267195702}
   LimpLifetimeSeconds: 10
+  Speed: 4
   EmitProbability: 0.01
 --- !u!1001 &3024485946806855200
 PrefabInstance:
