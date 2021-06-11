@@ -75,20 +75,22 @@ public class CicadaSpawner : MonoBehaviour
         }
         for(var x = xmin; x <= xmax; x+=ScanResolution)
         {
-            for(var z = zmin; z <= zmin; z+=ScanResolution)
+            for(var z = zmin; z <= zmax; z+=ScanResolution)
             {
                 var pos = new Vector3(x, ScanHeight, z);
                 RaycastHit hit;
                 // Does the ray intersect any objects excluding the player layer
                 if (Physics.Raycast(pos, transform.TransformDirection(Vector3.down), out hit, Mathf.Infinity))
                 {
-                    //Debug.DrawRay(transform.position, transform.TransformDirection(Vector3.down) * hit.distance, Color.yellow);
+                    
                     if(hit.collider.gameObject.tag == "Ground")
                     {
+                        Debug.DrawRay(transform.position, transform.TransformDirection(Vector3.down) * hit.distance, Color.white);
                         landLocations.Add(hit.point);
                     }
                     if(hit.collider.gameObject.tag == "Tree")
                     {
+                        Debug.DrawRay(transform.position, transform.TransformDirection(Vector3.down) * hit.distance, Color.green);
                         spawnLocations.Add(hit.point);
                     }
                     //Debug.Log("Did Hit");
