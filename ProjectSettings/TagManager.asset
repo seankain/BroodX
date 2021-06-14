@@ -9,6 +9,7 @@ TagManager:
   - CicadaSpawn
   - Ground
   - Tree
+  - CameraPan
   layers:
   - Default
   - TransparentFX
