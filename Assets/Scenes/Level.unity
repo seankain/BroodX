@@ -968,7 +968,7 @@ GameObject:
   - component: {fileID: 100815349}
   m_Layer: 0
   m_Name: CameraPan (1)
-  m_TagString: Untagged
+  m_TagString: CameraPan
   m_Icon: {fileID: 419385456094870383, guid: 0000000000000000d000000000000000, type: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1807,7 +1807,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4441836622353142, guid: bc131e0c7707c8e4d8099dd0b1451179, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0.9
+      value: 0.74
       objectReference: {fileID: 0}
     - target: {fileID: 4441836622353142, guid: bc131e0c7707c8e4d8099dd0b1451179, type: 3}
       propertyPath: m_LocalPosition.z
@@ -2204,6 +2204,7 @@ GameObject:
   - component: {fileID: 221541649}
   - component: {fileID: 221541648}
   - component: {fileID: 221541647}
+  - component: {fileID: 221541650}
   m_Layer: 0
   m_Name: Goal
   m_TagString: Untagged
@@ -2334,6 +2335,18 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &221541650
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 221541646}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2fc74d089ca274b4299f80dd7a05cce8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &264197405
 GameObject:
   m_ObjectHideFlags: 0
@@ -2797,7 +2810,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 1
     m_VerticalOverflow: 1
     m_LineSpacing: 1
-  m_Text: 
+  m_Text: CICADA AVOIDER
 --- !u!222 &328829667
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -4312,7 +4325,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 534669902}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 1a1bfe72fbc87d04e885296b53e91c66, type: 3}
   m_Name: 
@@ -4380,7 +4393,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 541734592}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: d2a9271596181064f813cba34c3f5d0c, type: 3}
   m_Name: 
@@ -4458,6 +4471,7 @@ RectTransform:
   m_LocalScale: {x: 0, y: 0, z: 0}
   m_Children:
   - {fileID: 328829665}
+  - {fileID: 1077279225}
   m_Father: {fileID: 0}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -4487,6 +4501,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   cam: {fileID: 534669904}
+  MenuText: {fileID: 328829666}
+  HintText: {fileID: 1077279226}
 --- !u!1001 &555410240
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -5876,7 +5892,7 @@ GameObject:
   - component: {fileID: 771211203}
   m_Layer: 0
   m_Name: CameraPan (5)
-  m_TagString: Untagged
+  m_TagString: CameraPan
   m_Icon: {fileID: 419385456094870383, guid: 0000000000000000d000000000000000, type: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -6864,6 +6880,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   CicadaPrefab: {fileID: 2681972881777777521, guid: d7fc036468d385c44b1e8bb7ec0cdae2,
     type: 3}
+  KamikazeProbability: 0
   CicadaPoolSize: 20
   SpawnTime: 1
   SpawnBound1: {fileID: 1107987614}
@@ -7484,6 +7501,85 @@ Transform:
     type: 3}
   m_PrefabInstance: {fileID: 1062188523}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &1077279224
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1077279225}
+  - component: {fileID: 1077279227}
+  - component: {fileID: 1077279226}
+  m_Layer: 5
+  m_Name: HintText
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!224 &1077279225
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1077279224}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 541734597}
+  m_RootOrder: 1
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 0.5, y: 0.5}
+  m_AnchorMax: {x: 0.5, y: 0.5}
+  m_AnchoredPosition: {x: 0, y: -77.5}
+  m_SizeDelta: {x: 160, y: 30}
+  m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &1077279226
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1077279224}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5f7201a12d95ffc409449d95f23cf332, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Material: {fileID: 0}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_RaycastTarget: 1
+  m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
+  m_Maskable: 1
+  m_OnCullStateChanged:
+    m_PersistentCalls:
+      m_Calls: []
+  m_FontData:
+    m_Font: {fileID: 12800000, guid: a8f74dbf0f81e504bbbdf3f6063e1047, type: 3}
+    m_FontSize: 36
+    m_FontStyle: 0
+    m_BestFit: 0
+    m_MinSize: 3
+    m_MaxSize: 72
+    m_Alignment: 1
+    m_AlignByGeometry: 0
+    m_RichText: 1
+    m_HorizontalOverflow: 1
+    m_VerticalOverflow: 1
+    m_LineSpacing: 1
+  m_Text: Click to Start
+--- !u!222 &1077279227
+CanvasRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1077279224}
+  m_CullTransparentMesh: 0
 --- !u!1 &1077502048
 GameObject:
   m_ObjectHideFlags: 0
@@ -9369,7 +9465,7 @@ GameObject:
   - component: {fileID: 1367071461}
   m_Layer: 0
   m_Name: CameraPan
-  m_TagString: Untagged
+  m_TagString: CameraPan
   m_Icon: {fileID: 419385456094870383, guid: 0000000000000000d000000000000000, type: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -11147,7 +11243,7 @@ GameObject:
   - component: {fileID: 1528740902}
   m_Layer: 0
   m_Name: CameraPan (2)
-  m_TagString: Untagged
+  m_TagString: CameraPan
   m_Icon: {fileID: 419385456094870383, guid: 0000000000000000d000000000000000, type: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -15139,7 +15235,7 @@ GameObject:
   - component: {fileID: 2034961050}
   m_Layer: 0
   m_Name: CameraPan (4)
-  m_TagString: Untagged
+  m_TagString: CameraPan
   m_Icon: {fileID: 419385456094870383, guid: 0000000000000000d000000000000000, type: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -15289,7 +15385,7 @@ GameObject:
   - component: {fileID: 2080090914}
   m_Layer: 0
   m_Name: CameraPan (3)
-  m_TagString: Untagged
+  m_TagString: CameraPan
   m_Icon: {fileID: 419385456094870383, guid: 0000000000000000d000000000000000, type: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -15925,8 +16021,8 @@ GameObject:
   - component: {fileID: 1371481082}
   - component: {fileID: 1371481083}
   m_Layer: 8
-  m_Name: hilldude_v1 (1)
-  m_TagString: Untagged
+  m_Name: Player
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0

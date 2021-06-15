@@ -15,11 +15,17 @@ public class MenuPan : MonoBehaviour
     private int currentIndex = 0;
     private Vector3 currentTarget = Vector3.zero;
 
-    // Start is called before the first frame update
-    void Start()
+
+    private void Awake()
     {
         cam = GetComponent<Camera>();
         panLocations = GameObject.FindGameObjectsWithTag(CameraPanTag);
+    }
+
+    // Start is called before the first frame update
+    void Start()
+    {
+
         cam.transform.position = panLocations[0].transform.position;
         cam.transform.LookAt(CenterFocus);
     }

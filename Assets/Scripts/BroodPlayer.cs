@@ -104,13 +104,6 @@ public class BroodPlayer : MonoBehaviour
         if (collision.gameObject.tag == "Ground") { Grounded = false; }
     }
 
-    private void OnTriggerEnter(Collider other)
-    {
-        if (other.gameObject.name == "Goal")
-        {
-            other.gameObject.GetComponent<AudioSource>().Play();
-        }
-    }
 
     void Die()
     {
@@ -134,6 +127,11 @@ public class BroodPlayer : MonoBehaviour
         invectorInput.enabled = true;
         SetRagdoll(false);
         
+    }
+
+    public void ReturnToOrigin() {
+        this.gameObject.transform.rotation = Quaternion.identity;
+        this.gameObject.transform.position = respawnLocation;
     }
 
 }

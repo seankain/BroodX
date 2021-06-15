@@ -2,6 +2,10 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+public enum CicadaBehavior
+{
+    Limper,Kamikaze
+}
 public class Cicada : MonoBehaviour
 {
     [SerializeField]
@@ -17,12 +21,17 @@ public class Cicada : MonoBehaviour
     private Vector3 Destination = Vector3.zero;
     private Rigidbody rb;
     private CicadaSpawner spawner;
+    private BroodPlayer player;
+
+    public CicadaBehavior BehaviorType;
 
     // Start is called before the first frame update
     void Start()
     {
         rb = GetComponent<Rigidbody>();
         spawner = FindObjectOfType<CicadaSpawner>();
+        player = FindObjectOfType<BroodPlayer>();
+        BehaviorType = CicadaBehavior.Limper;
         SetDestination();
     }
 
@@ -34,6 +43,10 @@ public class Cicada : MonoBehaviour
             LimpElapsed += Time.deltaTime;
             if(LimpElapsed >= LimpLifetimeSeconds) { gameObject.SetActive(false); LimpElapsed = 0;  }
             return;
+        }
+        if(BehaviorType == CicadaBehavior.Kamikaze)
+        {
+            Destination = player.gameObject.transform.position;
         }
         this.transform.LookAt(Destination);
         if (!CallSound.isPlaying)
@@ -76,6 +89,5 @@ public class Cicada : MonoBehaviour
     {
         GoLimp();
     }
-
 
 }

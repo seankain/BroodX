@@ -6,11 +6,12 @@ public class CicadaSpawner : MonoBehaviour
 {
     [SerializeField]
     private GameObject CicadaPrefab;
+    public float KamikazeProbability = 0.0f;
     [SerializeField]
-    private int CicadaPoolSize = 10;
+    public int CicadaPoolSize = 10;
     private List<GameObject> PrefabPool;
     [SerializeField]
-    private float SpawnTime = 5;
+    public float SpawnTime = 5;
     private float ScanHeight = 15;
     private float ScanResolution = 0.1f;
     [SerializeField]
@@ -46,13 +47,13 @@ public class CicadaSpawner : MonoBehaviour
         var zmin = Mathf.Infinity;
         var zmax = Mathf.NegativeInfinity;
         var bounds = new GameObject[] { SpawnBound1, SpawnBound2, SpawnBound3, SpawnBound4 };
-        foreach(var b in bounds)
+        foreach (var b in bounds)
         {
-            if(b.transform.position.x < xmin)
+            if (b.transform.position.x < xmin)
             {
                 xmin = b.transform.position.x;
             }
-            if(b.transform.position.y < ymin)
+            if (b.transform.position.y < ymin)
             {
                 ymin = b.transform.position.y;
             }
@@ -73,22 +74,22 @@ public class CicadaSpawner : MonoBehaviour
                 zmax = b.transform.position.z;
             }
         }
-        for(var x = xmin; x <= xmax; x+=ScanResolution)
+        for (var x = xmin; x <= xmax; x += ScanResolution)
         {
-            for(var z = zmin; z <= zmax; z+=ScanResolution)
+            for (var z = zmin; z <= zmax; z += ScanResolution)
             {
                 var pos = new Vector3(x, ScanHeight, z);
                 RaycastHit hit;
                 // Does the ray intersect any objects excluding the player layer
                 if (Physics.Raycast(pos, transform.TransformDirection(Vector3.down), out hit, Mathf.Infinity))
                 {
-                    
-                    if(hit.collider.gameObject.tag == "Ground")
+
+                    if (hit.collider.gameObject.tag == "Ground")
                     {
                         Debug.DrawRay(transform.position, transform.TransformDirection(Vector3.down) * hit.distance, Color.white);
                         landLocations.Add(hit.point);
                     }
-                    if(hit.collider.gameObject.tag == "Tree")
+                    if (hit.collider.gameObject.tag == "Tree")
                     {
                         Debug.DrawRay(transform.position, transform.TransformDirection(Vector3.down) * hit.distance, Color.green);
                         spawnLocations.Add(hit.point);
@@ -110,24 +111,37 @@ public class CicadaSpawner : MonoBehaviour
     void Update()
     {
         CooldownTime += Time.deltaTime;
-        if(CooldownTime >= SpawnTime)
+        if (CooldownTime >= SpawnTime)
         {
             if (PrefabPool.Count < CicadaPoolSize)
             {
                 //var cicadaGameObject = Instantiate(CicadaPrefab, SpawnLocations[(int)Random.Range(0, SpawnLocations.Length - 1)].transform.position, Quaternion.identity, null);
                 var cicadaGameObject = Instantiate(CicadaPrefab, spawnLocations[(int)Random.Range(0, spawnLocations.Count - 1)], Quaternion.identity, null);
+                if (Random.value < KamikazeProbability)
+                {
+                    cicadaGameObject.GetComponent<Cicada>().BehaviorType = CicadaBehavior.Kamikaze;
+                }
                 CooldownTime = 0;
                 PrefabPool.Add(cicadaGameObject);
             }
             else
             {
-                foreach(var c in PrefabPool)
+                foreach (var c in PrefabPool)
                 {
                     if (!c.activeInHierarchy)
                     {
                         c.transform.position = SpawnLocations[(int)Random.Range(0, SpawnLocations.Length - 1)].transform.position;
                         c.SetActive(true);
-                        c.GetComponent<Cicada>().Respawn();
+                        var cic = c.GetComponent<Cicada>();
+                        cic.Respawn();
+                        if (Random.value < KamikazeProbability)
+                        {
+                            cic.BehaviorType = CicadaBehavior.Kamikaze;
+                        }
+                        else
+                        {
+                            cic.BehaviorType = CicadaBehavior.Limper;
+                        }
                     }
                 }
             }
